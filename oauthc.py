@@ -73,14 +73,25 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         
         html = f"""
-        <html>
+        <!DOCTYPE html>
+        <html lang="en">
         <head>
-        <title>oauthc - Start login</title>
-        <meta http-equiv="Refresh" content="0; url={authorization_url}">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>oauthc - Start login</title>
+            <meta http-equiv="Refresh" content="0; url={authorization_url}">
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
-        <h1>Start login</h1>
-        <p><a href="{authorization_url}">Start login</a></p>
+            <header>
+                <h1>Start login</h1>
+            </header>
+            <main>
+                <p><a href="{authorization_url}">Start login</a></p>
+            </main>
+            <footer>
+                <p>&copy; 2025 NetScaler OAuth IDP Client</p>
+            </footer>
         </body>
         </html>
         """
@@ -113,14 +124,24 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             
             html = """
-            <html>
+            <!DOCTYPE html>
+            <html lang="en">
             <head>
-            <title>oauthc - Login result</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>oauthc - Login result</title>
+                <link rel="stylesheet" href="styles.css">
             </head>
             <body>
-            <h1>Login result</h1>
-            <table border="1">
-            <tr><th>Key</th><th>Value</th></tr>
+                <header>
+                    <h1>Login result</h1>
+                </header>
+                <main>
+                    <table>
+                        <thead>
+                            <tr><th>Key</th><th>Value</th></tr>
+                        </thead>
+                        <tbody>
             """
             
             # Display all properties of the user token
@@ -139,7 +160,11 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
                     except Exception as e:
                         html += f"<tr><td>id_token decode error</td><td>{str(e)}</td></tr>\n"
             
-            html += "</table><br>\n"
+            html += """
+                        </tbody>
+                    </table>
+                    <br>
+            """
             
             # Link for userinfo URL
             if "token_type" in token_dict and "access_token" in token_dict:
@@ -147,7 +172,15 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
                 access_token = urllib.parse.quote(token_dict["access_token"])
                 html += f'<a href="/userinfo?token_type={token_type}&access_token={access_token}">Userinfo</a><br>\n'
             
-            html += '<a href="/">Home</a></body></html>'
+            html += """
+                    <a href="/">Home</a>
+                </main>
+                <footer>
+                    <p>&copy; 2025 NetScaler OAuth IDP Client</p>
+                </footer>
+            </body>
+            </html>
+            """
             
             self.wfile.write(html.encode('utf-8'))
             
@@ -157,12 +190,25 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             
             html = f"""
-            <html>
-            <head><title>OAuth Error</title></head>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>OAuth Error</title>
+                <link rel="stylesheet" href="styles.css">
+            </head>
             <body>
-            <h1>Error fetching token</h1>
-            <p>{str(e)}</p>
-            <a href="/">Try again</a>
+                <header>
+                    <h1>Error fetching token</h1>
+                </header>
+                <main>
+                    <p>{str(e)}</p>
+                    <a href="/">Try again</a>
+                </main>
+                <footer>
+                    <p>&copy; 2025 NetScaler OAuth IDP Client</p>
+                </footer>
             </body>
             </html>
             """
@@ -199,15 +245,26 @@ class OAuthHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         
         html = f"""
-        <html>
+        <!DOCTYPE html>
+        <html lang="en">
         <head>
-        <title>oauthc - Userinfo</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>oauthc - Userinfo</title>
+            <link rel="stylesheet" href="styles.css">
         </head>
         <body>
-        <h1>Userinfo</h1>
-        <p>Status: {status_code}</p>
-        <pre>{response_text}</pre>
-        <a href="/">Home</a>
+            <header>
+                <h1>Userinfo</h1>
+            </header>
+            <main>
+                <p>Status: {status_code}</p>
+                <pre>{response_text}</pre>
+                <a href="/">Home</a>
+            </main>
+            <footer>
+                <p>&copy; 2025 NetScaler OAuth IDP Client</p>
+            </footer>
         </body>
         </html>
         """
