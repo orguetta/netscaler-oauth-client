@@ -1,0 +1,20 @@
+name: ns-oauth-client
+services:
+  oauth-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ns-oauth-client
+    container_name: ns-oauth-client
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+    environment:
+      - CLIENT_ID=${CLIENT_ID:-oauthc}
+      - CLIENT_SECRET=${CLIENT_SECRET:-secret}
+      - HOST_NAME=${HOST_NAME:-localhost}
+      - PORT=${PORT:-8000}
+      - REDIRECT_URI=${REDIRECT_URI:-http://localhost:8000/callback}
+      - IDP_LOGIN_URL=${IDP_LOGIN_URL:-https://AUTH_VSERVER/oauth/idp/login}
+      - IDP_TOKEN_URL=${IDP_TOKEN_URL:-https://AUTH_VSERVER/oauth/idp/token}
+      - IDP_INFO_URL=${IDP_INFO_URL:-https://AUTH_VSERVER/oauth/idp/userinfo}
+    restart: unless-stopped

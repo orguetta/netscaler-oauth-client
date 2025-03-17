@@ -1,0 +1,10 @@
+.git/
+.github/
+.venv/
+.env
+.env.example
+.gitignore
+docker-compose.yml
+Dockerfile
+entrypoint.sh
+README.md
