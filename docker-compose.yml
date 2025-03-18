@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/orguetta/netscaler_oauth-client:latest
+    image: ghcr.io/orguetta/netscaler-oauth-client:latest
     container_name: ns-oauth-client
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
