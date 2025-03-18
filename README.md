@@ -19,11 +19,6 @@ This is a simple OAuth 2.0 client for testing with NetScaler OAuth IDP.
    - `IDP_INFO_URL`: Your NetScaler OAuth IDP userinfo URL
    - `HOST_NAME`: Your hostname (default: localhost)
 
-3. Create a `cgi-bin` directory to hold the script:
-   ```
-   mkdir -p cgi-bin
-   ```
-
 4. Start the application using Docker Compose:
    ```
    docker-compose up -d
