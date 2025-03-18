@@ -6,7 +6,7 @@ This is a simple OAuth 2.0 client for testing with NetScaler OAuth IDP.
 
 1. Clone the repository:
    ```
-   git clone https://github.com/orguetta/netscaler_oauth-client.git
+   git clone https://github.com/orguetta/netscaler-oauth-client.git
    cd netscaler_oauth-client
    ```
 
